@@ -36,7 +36,8 @@ form.addEventListener("submit", addMovie);
 
 function deleteMovie(event) {
   event.target.parentNode.remove();
-  message.textContent = "Movie Deleted!";
+  message.textContent = `${event.target.parentNode.firstChild.textContent} Deleted!`;
+  revealMessage();
 }
 
 //Cross Off
@@ -44,8 +45,18 @@ function deleteMovie(event) {
 function crossOffMovie(event) {
   event.target.classList.toggle("checked");
   if (event.target.classList.contains("checked")) {
-    message.textContent = "Movie Watched!";
+    message.textContent = `${event.target.textContent} Watched!`;
   } else {
-    message.textContent = "Movie returned to watchlist!";
+    message.textContent = `${event.target.textContent} returned to watchlist!`;
   }
+  revealMessage();
+}
+
+//Reveal Message
+
+function revealMessage() {
+  message.classList.remove("hide");
+  setTimeout(() => {
+    message.classList.add("hide");
+  }, 1750);
 }
